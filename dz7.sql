@@ -126,6 +126,14 @@ VALUES
 select name from users u 
 where id in (select distinct user_id from orders);
 
+-- с помощью join
+
+select u.name, o.id
+from users u
+join orders o
+where u.id = o.user_id
+order by u.id;
+
 -- Task 2
 
 select p.name, c.name 
@@ -167,3 +175,13 @@ select id as id_f,
 		(select name from cities where label = `to`)
 from flights 
 order by id_f;
+
+-- с помощью join
+
+select f.id, c1.name, c2.name
+from flights f
+inner join cities c1 
+on c1.label = f.`from`
+inner join cities c2
+on c2.label = f.`to`
+order by f.id;
